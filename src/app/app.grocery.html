@@ -1,5 +1,18 @@
-<div>
-  <h2>Grocery list manager</h2>
+<head>
+  <link
+    href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+    rel="stylesheet"
+  />
+</head>
+<body>
+  <h1>
+    <img
+      src="https://blogs.lse.ac.uk/usappblog/files/2018/01/The-Sociology-of-Food-Image.jpg"
+      alt="grocery"
+      style="width:70px;height:50px"
+    />
+    My Grocery List
+  </h1>
 
   <div class="row">
     <div class="col-xs-6 col-md-4">
@@ -7,23 +20,33 @@
         <input
           type="text"
           class="form-control"
-          placeholder="enter grocery items"
-          [(ngModel)]="task"
+          placeholder="Enter grocery items"
+          id="txtsearch"
+          [(ngModel)]="task.name"
         />
+
         <div class="input-group-btn">
           <button class="btn btn-primary" type="button" (click)="onClick()">
-            <span class="glyphicon glyphicon-ok"></span>
+            <i class="fa fa-caret-square-o-right"></i>
           </button>
         </div>
       </div>
+
+      <ul class="list-group">
+        <li *ngFor="let task of tasks" class="list-group-item">
+          <span (click)="onEdit(task)" class="pull-right">
+            <i class="fa fa-pencil-square-o"></i
+          ></span>
+
+          <span (click)="onDelete(task)" class="pull-right">
+            <i class="fa fa-trash-o"></i
+          ></span>
+
+          <span (click)="onStrike(task)" [ngClass]="{ strike: task.strike }"
+            >{{ task.name }}
+          </span>
+        </li>
+      </ul>
     </div>
   </div>
-
-  <br />
-
-  <ul class="list-group">
-    <li *ngFor="let task of tasks" class="list-group-item">
-      <span> {{ task.name }} </span>
-    </li>
-  </ul>
-</div>
+</body>
